@@ -1,0 +1,87 @@
+<ion-header class="ion-text-center ">
+  <ion-toolbar>
+    EJERCICIO 04
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+<ion-grid>
+
+  <ion-row>
+    <ion-col>
+      <swiper-container pagination="true" class="ion-margin-top ion-text-center" style="height: 80px;">
+        <swiper-slide (click)="cargarComponentesShadow()">
+          <ion-icon name="moon" size="large-" style="border: 2px solid black; border-radius: 50%; font-size: 48px;"></ion-icon>
+        </swiper-slide>
+
+        <swiper-slide (click)="cargarComponentesLight()">
+          <ion-icon name="sunny" size="large-" style="border: 2px solid black; border-radius: 50%; font-size: 48px;"></ion-icon>
+        </swiper-slide>
+      </swiper-container>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="ion-align-items-center">
+
+    <ion-col class="ion-text-end">
+      <ion-icon name="moon" size="large-" style="font-size: 48px"></ion-icon>
+    </ion-col>
+
+    <ion-col size="6" class="ion-text-center ion-margin-top">
+      <ion-label>Shadow or Light</ion-label>
+    </ion-col>
+
+    <ion-col class="ion-text-start">
+      <ion-icon name="sunny" size="large-" style="font-size: 48px"></ion-icon>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+    <swiper-container [slidesPerView]="2.2"
+      [spaceBetween]="10">
+      @for (o of globalArray; track $index){
+        <swiper-slide style="border: 2px solid black; border-radius: 2%; padding: 5px; width: 100%; height: 225px">
+          <ion-img (click)="infoPeli(o['#IMG_POSTER'],o['#TITLE'],o['#YEAR'],o['#AKA'],o['#RANK'])" [src]="o['#IMG_POSTER']" [style.width]="o.photo_width" [style.height]="o.photo_height" ></ion-img>
+        </swiper-slide>
+      }
+    </swiper-container>
+
+    </ion-col>
+  </ion-row>
+  <ion-row class="ion-text-end">
+    <ion-col>
+
+      <ion-card *ngIf="selectedMovie" mode="ios">
+
+        <ion-card-header>
+          <ion-img src="{{selectedMovie.img}}" style="height: 400px; width: auto"></ion-img>
+        </ion-card-header>
+
+        <ion-card-content class="ion-text-start">
+          <ion-label>
+            <h1>{{selectedMovie.title}}</h1>
+            <p style="color: blue">{{selectedMovie.year}}</p>
+            <br>
+            <p style="color: grey">{{selectedMovie.aka}}</p>
+            <br>
+            <ion-badge>
+              <ion-text>{{selectedMovie.rank}}</ion-text>
+            </ion-badge>
+<!--            <p style="background-color: blue; width: auto; color: white">{{selectedMovie.rank}}</p>-->
+          </ion-label>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+  </ion-grid>
+
+
+
+
+
+
+
+</ion-content>
+
